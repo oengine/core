@@ -1,7 +1,7 @@
 # This is OEngine Platform
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/oengine/core.svg?style=flat-square)](https://packagist.org/packages/OEngine/core)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/oengine/core/run-tests?label=tests)](https://github.com/OEngine/core/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/oengine/core.svg?style=flat-square)](https://packagist.org/packages/oengine/core)
+[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/oengine/core/run-tests?label=tests)](https://github.com/oengine/core/actions?query=workflow%3Arun-tests+branch%3Amain)
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/oengine/core/Fix%20PHP%20code%20style%20issues?label=code%20style)](https://github.com/oengine/core/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/oengine/core.svg?style=flat-square)](https://packagist.org/packages/oengine/core)
 
