@@ -1,0 +1,57 @@
+{
+  "name": "oengine/core",
+  "description": "laravel support module plugin theme hook. like wordpress.",
+  "keywords": [
+    "oengine",
+    "laravel",
+    "core",
+    "wordpress",
+    "oengine Platform"
+  ],
+  "homepage": "https://github.com/oengine/core",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Nguyen Van Hau",
+      "email": "nguyenvanhau.soft@gmail.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "livewire/livewire": "^2.10",
+    "laravel/framework": "^9"
+  },
+  "require-dev": {},
+  "autoload": {
+    "psr-4": {
+      "OEngine\\Core\\": "src/",
+      "OEngine\\Core\\Database\\Factories\\": "database/factories/",
+      "OEngine\\Core\\Database\\Seeders\\": "database/seeders/",
+      "OEngine\\Core\\Widget\\": "widgets/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "OEngine\\Core\\Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "analyse": "vendor/bin/phpstan analyse",
+    "test": "vendor/bin/pest",
+    "test-coverage": "vendor/bin/pest --coverage",
+    "format": "vendor/bin/pint"
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "OEngine\\Core\\CoreServiceProvider"
+      ],
+      "aliases": {}
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}

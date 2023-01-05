@@ -1,0 +1,11 @@
+{
+  "name": "oengine-admin",
+  "admin": true,
+  "title": "oengine theme",
+  "description": "",
+  "author": "nguyen van hau",
+  "namespace": "Theme\\OEngineAdmin",
+  "layout": "layout",
+  "files": ["function.php"],
+  "required_plugins": []
+}

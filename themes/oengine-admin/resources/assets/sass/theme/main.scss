@@ -1,0 +1,29 @@
+.page-main {
+    background-color: var(--bs-gray-100);
+    min-height: 100vh;
+
+    .page-container {
+        min-height: 100vh;
+        padding-left: $sidebar_width;
+        -webkit-transition: all 0.2s ease;
+        -o-transition: all 0.2s ease;
+        transition: all 0.2s ease;
+        @media screen  and (max-width:$sidebar_width_max) {
+            padding-left: $sidebar_width_mini;
+        }
+        .page-content{
+            padding-top: $header_height;
+            .page-manager{
+                padding: 10px;
+            }
+        }
+    }
+}
+.is-sidebar-mini{
+    .page-container {
+        padding-left: $sidebar_width_mini;
+        @media screen  and (max-width: $sidebar_width_max) {
+            padding-left: $sidebar_width;
+        }
+    }
+}

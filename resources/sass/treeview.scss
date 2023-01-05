@@ -1,0 +1,41 @@
+.tree-view {
+    overflow: auto;
+    max-width: 1024px;
+    max-height: 700px;
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+
+            .icon-open,
+            ul {
+                display: none;
+            }
+
+            &.active>div {
+                background: #ccc;
+            }
+
+            &.show> {
+                & div {
+                    .icon-close {
+                        display: none;
+                    }
+
+                    .icon-open {
+                        display: unset;
+                    }
+                }
+
+
+                ul {
+                    margin-left: 15px;
+                    display: block;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,54 @@
+.header {
+    background-color: #fff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.0625);
+    height: $header_height;
+    display: block;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    -webkit-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+    width: calc(100% - $sidebar_width);
+    z-index: 800;
+
+    @media screen and (max-width: $sidebar_width_max) {
+        width: calc(100% - $sidebar_width_mini);
+    }
+
+    .header-container {
+        height: 100%;
+
+        .nav-left,
+        .nav-right {
+            height: 100%;
+            list-style: none;
+            margin-bottom: 0;
+            padding-left: 0;
+            position: relative;
+
+            li {
+                float: left;
+            }
+        }
+
+        .nav-left {
+            float: left;
+            margin-left: 15px;
+        }
+
+        .nav-right {
+            float: right;
+        }
+    }
+}
+
+.is-sidebar-mini {
+    .header {
+        width: calc(100% - $sidebar_width_mini);
+
+        @media screen and (max-width: $sidebar_width_max) {
+            width: calc(100% - $sidebar_width);
+        }
+    }
+}
