@@ -9,7 +9,13 @@
             </p>
         </li>
         <li class="w-100">
-            <div class="text-center">
+            <div class="text-center p-1">
+                <a href="#" wire:component='core::common.change-password'
+                    class="btn btn-sm btn-primary m-auto">Change Password</a>
+            </div>
+        </li>
+        <li class="w-100">
+            <div class="text-center  p-1">
                 <a href="#" wire:click="DoLogout()" class="btn btn-sm btn-danger m-auto">Sign out</a>
             </div>
         </li>

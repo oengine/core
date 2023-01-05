@@ -112,3 +112,9 @@ if (!function_exists('getDashboard')) {
         return DashboardLoader::getConfigByPostion($postion);
     }
 }
+if (!function_exists('BladeToHtml')) {
+    function BladeToHtml($content = '')
+    {
+        return Blade::render($content);
+    }
+}
