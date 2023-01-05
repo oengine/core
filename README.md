@@ -37,6 +37,14 @@ usename: admin@oengine.local
 password: AdMin@123
 ```
 
+Comment route default : routes/web.php
+
+```php
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+```
+
 
 You can publish and run the migrations with:
 
