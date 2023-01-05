@@ -16,6 +16,15 @@ You can install the package via composer:
 composer require oengine/core
 ```
 
+Change User/Pass Default:
+
+add code to .env file:
+
+```bash
+OENGINE_CORE_EMAIL=admin@oengine.local
+OENGINE_CORE_PASSWORD=AdMin@123
+```
+
 Run the migrations and seed with:
 
 ```bash

@@ -26,8 +26,8 @@ class CoreSeeder extends Seeder
         $roleAdmin->save();
         $userAdmin = new User();
         $userAdmin->name = "nguyen van hau";
-        $userAdmin->email = env('GATE_CORE_EMAIL', "admin@lara.asia");
-        $userAdmin->password = env('GATE_CORE_PASSWORD', "AdMin@123");
+        $userAdmin->email = env('OENGINE_CORE_EMAIL', "admin@oengine.local");
+        $userAdmin->password = env('OENGINE_CORE_PASSWORD', "AdMin@123");
         $userAdmin->status = 1;
         $userAdmin->save();
         $userAdmin->roles()->sync([$roleAdmin->id]);
