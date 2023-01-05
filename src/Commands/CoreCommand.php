@@ -9,7 +9,7 @@ class CoreCommand extends Command
 {
     public $signature = 'core-install';
     public $description = 'oengine\core install';
-    protected bool $askToRunMigrations = false;
+    protected bool $askToRunMigrations = true;
     protected bool $copyServiceProviderInApp = true;
     protected ?string $starRepo = "oengine/core";
 
@@ -19,7 +19,7 @@ class CoreCommand extends Command
             if ($this->confirm('Would you like to run the migrations now?')) {
                 $this->comment('Running migrations...');
 
-                $this->call('migrate --seed --seeder=\\OEngine\\Core\\Database\\Seeders\\CoreSeeder');
+                $this->call('migrate:fresh --seed --seeder=\\OEngine\\Core\\Database\\Seeders\\CoreSeeder');
             }
         }
 
