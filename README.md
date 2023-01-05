@@ -19,7 +19,7 @@ composer require oengine/core
 Run the migrations and seed with:
 
 ```bash
-php artisan migrate:fresh --seed --seeder=\\OEngine\\Core\\Database\\Seeders\\CoreSeeder
+php artisan core-install
 ```
 
 Account:
