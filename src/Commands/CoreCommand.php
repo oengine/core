@@ -19,7 +19,10 @@ class CoreCommand extends Command
             if ($this->confirm('Would you like to run the migrations now?')) {
                 $this->comment('Running migrations...');
 
-                $this->call('migrate:fresh --seed --seeder=\\OEngine\\Core\\Database\\Seeders\\CoreSeeder');
+                $this->call('migrate:fresh', [
+                    '--seed',
+                    '--seeder' => '\\OEngine\\Core\\Database\\Seeders\\CoreSeeder'
+                ]);
             }
         }
 
@@ -51,7 +54,8 @@ class CoreCommand extends Command
 
     protected function copyServiceProviderInApp(): self
     {
-        ReplaceTextInFile(app_path('Models/User.php'), "Illuminate\\Foundation\\Auth\\User", "OEngine\\Core\\Models\\User",true,"OEngine\\Core\\Models\\User");
+        
+        ReplaceTextInFile(app_path('Models/User.php'), "Illuminate\\Foundation\\Auth\\User", "OEngine\\Core\\Models\\User", true, "OEngine\\Core\\Models\\User");
         $this->info("App/Models/User.php has been updated!");
         Core::checkFolder();
         $this->call('module:link');
