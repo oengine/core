@@ -19,7 +19,7 @@ class CoreCommand extends Command
             if ($this->confirm('Would you like to run the migrations now?')) {
                 $this->comment('Running migrations...');
 
-                $this->call('migrate:fresh --seed --seeder=\\OEngine\\Core\\Database\\Seeders\\CoreSeeder');
+                $this->call('migrate --seed --seeder=\\OEngine\\Core\\Database\\Seeders\\CoreSeeder');
             }
         }
 
