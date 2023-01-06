@@ -302,8 +302,10 @@ class DataInfo implements \ArrayAccess
             }
             Core::Link($this->getPath('public'), $this->getPublic($this->getKey()));
         }
-        foreach ($this->getFiles() as $file) {
-            Core::LoadHelper($this->getPath($file));
+        if (!$this->checkDump()) {
+            foreach ($this->getFiles() as $file) {
+                Core::LoadHelper($this->getPath($file));
+            }
         }
     }
     public function DoBoot()
