@@ -45,7 +45,8 @@ return [
             'unactivated' => 'UnActivated'
         ],
         'button' => [
-            'permission' => 'Permission'
+            'permission' => 'Permission',
+            'change-password' => 'Change Password'
         ]
     ],
     'role' => [
@@ -137,12 +138,12 @@ return [
             'list_key' => 'List Key',
             'list_data' => 'List Data',
             'type' => 'Type',
-            'placeholder'=>'Placeholder',
-            'prepend'=>'prepend',
-            'append'=>'append',
-            'character_limit'=>'character_limit',
-            'required'=>'required',
-            'default'=>'default',
+            'placeholder' => 'Placeholder',
+            'prepend' => 'prepend',
+            'append' => 'append',
+            'character_limit' => 'character_limit',
+            'required' => 'required',
+            'default' => 'default',
             'format' => 'Format',
             'module_key' => 'Module',
             'model_key' => 'Content Short',

@@ -150,6 +150,14 @@ class CoreServiceProvider extends ServiceProvider
                 });
             }
             $this->registerBladeDirectives();
+            add_filter('core_auth_permission_custom', function ($prev) {
+                return [
+                    ...$prev,
+                    "core.user.change-password",
+                    "core.user.permission",
+                    "core.role.permission"
+                ];
+            });
         }
     }
 
@@ -186,6 +194,7 @@ class CoreServiceProvider extends ServiceProvider
     }
     public function packageBooted()
     {
+        //core.user.change-password
         Module::BootApp();
         Plugin::BootApp();
         $this->bootGate();

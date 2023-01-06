@@ -10,10 +10,17 @@ return [
         'title' => 'Quản lý theme'
     ],
     'user' => [
-        'title' => 'Quản lý tài khoản'
+        'title' => 'Quản lý tài khoản',
+        'button' => [
+            'permission' => 'Thiết lập quyền',
+            'change-password' => 'Thay đổi mật khẩu'
+        ]
     ],
     'role' => [
-        'title' => 'Quản lý vai trò'
+        'title' => 'Quản lý vai trò',
+        'button' => [
+            'permission' => 'Thiết lập quyền'
+        ]
     ],
     'permission' => [
         'title' => 'Quản lý quyền hệ thống'

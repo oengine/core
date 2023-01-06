@@ -16,6 +16,14 @@ return GateConfig::NewItem()
             ->setDoComponent('core::page.permission.user', function ($id) {
                 return "{'userId':" . $id . "}";
             })
+            ->setType(ButtonConfig::TYPE_UPDATE),
+        GateConfig::Button('core::tables.user.button.change-password')
+            ->setIcon('<i class="bi bi-arrow-repeat"></i>')
+            ->setClass('btn btn-info btn-sm')
+            ->setPermission('core.user.change-password')
+            ->setDoComponent('core::common.change-password.index', function ($id) {
+                return "{'userId':" . $id . "}";
+            })
             ->setType(ButtonConfig::TYPE_UPDATE)
     ])
     ->setForm(
