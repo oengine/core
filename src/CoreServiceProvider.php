@@ -106,9 +106,9 @@ class CoreServiceProvider extends ServiceProvider
     }
     protected function registerBladeDirectives()
     {
-        Blade::directive('livewireG', [GateBladeDirectives::class, 'livewireG']);
-        Blade::directive('endLivewireG', [GateBladeDirectives::class, 'endLivewireG']);
-        Blade::directive('childSlot', [GateBladeDirectives::class, 'childSlot']);
+        Blade::directive('livewireG', [OEngineBladeDirectives::class, 'livewireG']);
+        Blade::directive('endLivewireG', [OEngineBladeDirectives::class, 'endLivewireG']);
+        Blade::directive('childSlot', [OEngineBladeDirectives::class, 'childSlot']);
         //Blade directives
         Blade::directive('role', function ($role) {
             return "if(auth()->check() &&(auth()->user()->isSuperAdmin() || auth()->user()->hasRole('{$role}'))) :"; //return this if statement inside php tag
