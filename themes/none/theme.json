@@ -4,6 +4,7 @@
   "title": "oengine theme",
   "description": "",
   "author": "nguyen van hau",
+  "namespace": "Theme\\OEngineNone",
   "layout": "layout",
   "files": ["function.php"],
   "required_plugins": []

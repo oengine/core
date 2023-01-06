@@ -297,7 +297,6 @@ class DataInfo implements \ArrayAccess
                     LivewireLoader::RegisterWidget($this->getPath('widgets'), $this->getNamespaceInfo() . '\\Widget', 'plugin-' . $this->getLowerName() . '::');
                     break;
                 default:
-                case 'plugin':
                     LivewireLoader::RegisterWidget($this->getPath('widgets'), $this->getNamespaceInfo() . '\\Widget',  $this->getLowerName() . '::');
                     break;
             }

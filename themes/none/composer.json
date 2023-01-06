@@ -1,6 +1,6 @@
 {
-  "name": "theme/oengine-admin",
-  "description": "theme admin gate.",
+  "name": "theme/oengine-none",
+  "description": "theme none oengine.",
   "keywords": [],
   "homepage": "https://github.com/oengine/core",
   "license": "MIT",
@@ -11,24 +11,28 @@
       "role": "Developer"
     }
   ],
-  "require": {},
+  "require": {
+  },
   "require-dev": {},
   "autoload": {
     "files": [
       "function.php"
     ],
     "psr-4": {
-      "Theme\\OEngineAdmin\\Widget\\": "widgets/"
+      "Theme\\OEngineNone\\Widget\\": "widgets/"
     }
   },
   "autoload-dev": {
-    "psr-4": {}
+    "psr-4": {
+    }
   },
-  "scripts": {},
+  "scripts": {
+  },
   "config": {
     "sort-packages": true
   },
-  "extra": {},
+  "extra": {
+  },
   "minimum-stability": "dev",
   "prefer-stable": true
 }

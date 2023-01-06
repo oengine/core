@@ -31,5 +31,7 @@ class CoreSeeder extends Seeder
         $userAdmin->status = 1;
         $userAdmin->save();
         $userAdmin->roles()->sync([$roleAdmin->id]);
+
+        set_option('page_admin_theme', 'oengine-admin');
     }
 }

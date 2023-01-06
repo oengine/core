@@ -45,7 +45,6 @@ class CoreCommand extends Command
                 }
             }
         }
-
         $this->info("OEngine\\Core has been installed!");
         $this->comment('All done');
 
