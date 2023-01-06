@@ -2,6 +2,7 @@
 
 namespace OEngine\Core\Http\Livewire\Common\ChangePassword;
 
+use Illuminate\Support\Facades\Log;
 use OEngine\Core\Facades\Core;
 use OEngine\Core\Livewire\Modal;
 use OEngine\Core\Models\User;
@@ -13,8 +14,9 @@ class Index extends Modal
     public $userId;
     public function mount($userId = null)
     {
-        if (!Core::checkPermission('core.user.change-password') && $userId != auth()->user()->id) {
-            return abort(404);
+        if ($userId && $userId != auth()->user()->id) {
+            if (!Core::checkPermission('core.user.change-password'))
+                return abort(403);
         }
         $this->setTitle(__('core::screens.change-password.title'));
     }
