@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use OEngine\Core\Support\Slug\SlugProcess;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +26,4 @@ Route::get('/', apply_filters('route_page_home_component', function () {
         return "Hello,";
     };
 }));
+Route::fallback(SlugProcess::class);
