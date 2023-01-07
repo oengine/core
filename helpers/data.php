@@ -68,7 +68,7 @@ if (!function_exists('get_list')) {
                 return $default;
             }
             //Set Cache Forever
-            Cache::put($cache_key, $dataList,);
+            Cache::put($cache_key, $dataList);
             return $dataList ?? $default;
         } catch (\Exception $e) {
             return $default;
