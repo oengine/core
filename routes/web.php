@@ -26,4 +26,5 @@ Route::get('/', apply_filters('route_page_home_component', function () {
         return "Hello,";
     };
 }));
-Route::fallback(SlugProcess::class);
+Route::get('{url}',SlugProcess::class);
+// Route::fallback(SlugProcess::class);

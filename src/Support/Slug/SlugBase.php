@@ -15,10 +15,14 @@ class SlugBase
     {
         return isset($this->params[$param]) && $this->params[$param] <> "";
     }
+    public function getParams()
+    {
+        return $this->params ?? [];
+    }
     public function ProcessParams(): self
     {
         $tags = isset($this->tags) ? $this->tags : [];
-        $this->params = Slug::getParamByDelimiters($this->slug, $tags,$this->format_key_value);
+        $this->params = Slug::getParamByDelimiters($this->slug, $tags, $this->format_key_value);
         return $this;
     }
 

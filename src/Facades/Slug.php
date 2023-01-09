@@ -8,8 +8,7 @@ use Illuminate\Support\Facades\Facade;
  * 
  * @method static mixed getParamByDelimiters(string $slug,array $delimiters,bool $format_key_value)
  * @method static mixed ViewBySlug(string $slug)
- * @method static array getListeners()
- * @method static mixed fire(string  $action,array  $args)
+ * @method static array getParameters()
  *
  * @see \OEngine\Core\Facades\Slug
  */

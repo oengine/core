@@ -3,7 +3,9 @@
 use OEngine\Core\Loader\DashboardLoader;
 use OEngine\Core\Support\Core\GateData;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Str;
+use Livewire\Livewire;
 
 if (!function_exists('getValueByKey')) {
     function getValueByKey($data, $key, $default = '')
@@ -107,7 +109,7 @@ if (!function_exists('getClassByWidget')) {
 }
 
 if (!function_exists('getDashboard')) {
-    function getDashboard($postion='')
+    function getDashboard($postion = '')
     {
         return DashboardLoader::getConfigByPostion($postion);
     }
@@ -116,5 +118,11 @@ if (!function_exists('BladeToHtml')) {
     function BladeToHtml($content = '')
     {
         return Blade::render($content);
+    }
+}
+if (!function_exists('ViewLivewire')) {
+    function ViewLivewire($view = '', $params)
+    {
+        return Livewire::mount($view,$params)->html();
     }
 }

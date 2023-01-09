@@ -2,10 +2,11 @@
 
 namespace OEngine\Core\Support\Slug;
 
+use Illuminate\Support\Facades\Route;
+use PhpParser\Node\Expr\FuncCall;
 
 class SlugManager
 {
-    private const delimiter = '@#$';
     public function __construct()
     {
         //$this->AddSlug(Error404Slug::class);
@@ -16,53 +17,58 @@ class SlugManager
         $delimitersIndex = [];
         foreach ($delimiters as $key) {
             if (str_starts_with($slug, $key)) {
-                $delimitersIndex[] = 0 . self::delimiter . $key;
+                $delimitersIndex[] = ['sort' => 0, 'key' => $key];;
             }
             $index = 1;
             while ($index = strpos($slug, $key, $index)) {
-                $delimitersIndex[] = $index . self::delimiter . $key;
+                $delimitersIndex[] = ['sort' => $index, 'key' => $key];
                 $index++;
             }
         }
-        sort($delimitersIndex);
+        usort($delimitersIndex, function ($a, $b) {
+            if ($a['sort'] == $b['sort']) {
+                return 0;
+            }
+            return ($a['sort'] < $b['sort']) ? -1 : 1;
+        });
         $newStr = str_replace($delimiters, $delimiters[0], $slug);
         $params = explode($delimiters[0], $newStr);
-        $keyValues = [];
         if ($format_key_value) {
-            for ($i = 1; $i < count($params); $i++) {
-                $key = explode(self::delimiter, $delimitersIndex[$i - 1])[1];
-                $value = trim(trim($params[$i], '-'));
-                if (isset($keyValues[$key])) {
-                    if (is_array($keyValues[$key])) {
-                        $keyValues[$key] = [...$keyValues[$key], $value];
-                    } else {
-                        $keyValues[$key] = [$keyValues[$key], $value];
-                    }
+            array_shift($params);
+        }
+        $lenParam = count($delimitersIndex);
+        $keyValues = [];
+        for ($i = 0; $i <  $lenParam; $i++) {
+            $key =  $delimitersIndex[$i]['key'];
+            $value = trim(trim($params[$i], '-'));
+            if (isset($keyValues[$key])) {
+                if (is_array($keyValues[$key])) {
+                    $keyValues[$key] = [...$keyValues[$key], $value];
                 } else {
-                    $keyValues[$key] = $value;
+                    $keyValues[$key] = [$keyValues[$key], $value];
                 }
-            }
-        } else {
-            for ($i = 0; $i < count($params) - 1; $i++) {
-                $key = explode(self::delimiter, $delimitersIndex[$i])[1];
-                $value = trim(trim($params[$i], '-'));
-                if (isset($keyValues[$key])) {
-                    if (is_array($keyValues[$key])) {
-                        $keyValues[$key] = [...$keyValues[$key], $value];
-                    } else {
-                        $keyValues[$key] = [$keyValues[$key], $value];
-                    }
-                } else {
-                    $keyValues[$key] = $value;
-                }
+            } else {
+                $keyValues[$key] = $value;
             }
         }
         return $keyValues;
+    }
+    public function ToUrl($class, $params)
+    {
     }
     private $arrSlug = [];
     public function AddSlug($class)
     {
         $this->arrSlug[] = $class;
+    }
+    private $arrParameters = [];
+    private function setParameter($name, $value)
+    {
+        $this->arrParameters[$name] = $value;
+    }
+    public function getParameters()
+    {
+        return $this->arrParameters ?? [];
     }
     public function ViewBySlug($slug)
     {
@@ -77,7 +83,15 @@ class SlugManager
         });
         foreach ($arrSlugs as $item) {
             if ($item->ProcessParams()->checkSlug()) {
-                return $item->viewSlug();
+                // return $item->getParams();
+                $route = Route::addRoute('get', '/', $item->viewSlug())->setContainer(app())->bind(request());
+                foreach ($item->getParams() as $paramKey => $paramValue) {
+                    $paramKey =  str($paramKey)->camel()->toString();
+                    $this->setParameter($paramKey, $paramValue);
+                    $route->setParameter($paramKey, $paramValue);
+                }
+                // return $route->parameters();
+                return  $route->run();
             }
         }
         return abort(404);
