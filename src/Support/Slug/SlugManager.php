@@ -4,6 +4,7 @@ namespace OEngine\Core\Support\Slug;
 
 use Illuminate\Support\Facades\Route;
 use PhpParser\Node\Expr\FuncCall;
+use Spatie\FlareClient\Http\Exceptions\NotFound;
 
 class SlugManager
 {
@@ -53,15 +54,46 @@ class SlugManager
         }
         return $keyValues;
     }
-    public function ToUrl($class, $params)
+    public function ToUrl($slugName, $params)
     {
+        $slug = $this->getSlugByKey($slugName);
+        if (!$slug) throw new NotFound($slugName . ' is not found slug');
+        // return '';
+        return $slug->ToUrl($params);
     }
+    private $keySlugs = [];
     private $arrSlug = [];
+    public function getSlugByKey($key)
+    {
+        if (count($this->keySlugs) == 0 && count($this->arrSlug) > 0) {
+            $arrSlug = $this->arrSlug;
+            $index = -1;
+            $slug = '';
+            $arrSlugs = array_map(function ($item) use ($slug, $index) {
+                $index++;
+                return  new $item($slug, $index);
+            },  $arrSlug);
+            usort($arrSlugs, function ($a, $b) {
+                return strcmp($a->getSort(), $b->getSort());
+            });
+            /** @var \OEngine\Core\Support\Slug\SlugBase  */
+            foreach ($arrSlugs as $item) {
+                $this->keySlugs[$item->getKey()] = $item;
+                $this->keySlugs[str($item->getKey())->kebab()->toString()] = $item;
+            }
+        }
+        // print_r(array_keys($this->keySlugs));
+        return isset($this->keySlugs[$key]) && $this->keySlugs[$key] != '' ? $this->keySlugs[$key] : null;
+    }
     public function AddSlug($class)
     {
         $this->arrSlug[] = $class;
     }
     private $arrParameters = [];
+    public function getParameter($name, $default = null)
+    {
+        return isset($this->arrParameters[$name]) && $this->arrParameters[$name] ? $this->arrParameters[$name] : $default;
+    }
     private function setParameter($name, $value)
     {
         $this->arrParameters[$name] = $value;
@@ -81,19 +113,21 @@ class SlugManager
         usort($arrSlugs, function ($a, $b) {
             return strcmp($a->getSort(), $b->getSort());
         });
+        $pageSlug = null;
+        /** @var \OEngine\Core\Support\Slug\SlugBase  */
         foreach ($arrSlugs as $item) {
-            if ($item->ProcessParams()->checkSlug()) {
-                // return $item->getParams();
+            if ($pageSlug == null && $item->ProcessParams()->checkSlug()) {
                 $route = Route::addRoute('get', '/', $item->viewSlug())->setContainer(app())->bind(request());
                 foreach ($item->getParams() as $paramKey => $paramValue) {
                     $paramKey =  str($paramKey)->camel()->toString();
                     $this->setParameter($paramKey, $paramValue);
                     $route->setParameter($paramKey, $paramValue);
                 }
-                // return $route->parameters();
-                return  $route->run();
+                $pageSlug =  $route->run();
             }
+            $this->keySlugs[$item->getKey()] = $item;
+            $this->keySlugs[str($item->getKey())->kebab()->toString()] = $item;
         }
-        return abort(404);
+        return  $pageSlug ?? abort(404);
     }
 }
