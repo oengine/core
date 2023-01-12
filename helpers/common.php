@@ -2,11 +2,8 @@
 
 use OEngine\Core\Loader\DashboardLoader;
 use OEngine\Core\Support\Core\GateData;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Str;
 use Livewire\Livewire;
-use OEngine\Core\Facades\Slug;
 
 if (!function_exists('getValueByKey')) {
     function getValueByKey($data, $key, $default = '')
@@ -125,12 +122,5 @@ if (!function_exists('ViewLivewire')) {
     function ViewLivewire($view = '', $params)
     {
         return Livewire::mount($view, $params)->html();
-    }
-}
-
-if (!function_exists('SlugToUrl')) {
-    function SlugToUrl($slug = '', $params)
-    {
-        return Slug::ToUrl($slug, $params);
     }
 }
