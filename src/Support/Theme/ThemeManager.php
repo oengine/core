@@ -30,7 +30,14 @@ class ThemeManager
     {
         $this->getAssets()->AddStyle($local, $contentOrPath, $cdn, $priority, $isLink);
     }
-
+    public function getHeaderInfo()
+    {
+        if (function_exists('seo') && $this->data_active && !$this->data_active->getValue('admin', 0)) {
+            echo  seo(Core::getModelSeo());
+        } else {
+            echo "<title>" . page_title() . "</title>";
+        }
+    }
     public function getAssets(): Assets
     {
         return $this->assets ?? ($this->assets = new Assets());

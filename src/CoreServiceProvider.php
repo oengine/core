@@ -5,7 +5,6 @@ namespace OEngine\Core;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use OEngine\Core\Facades\Theme;
-use OEngine\Core\Support\Core\ServicePackage;
 use OEngine\Core\Traits\WithServiceProvider;
 use OEngine\Core\Builder\Menu\MenuBuilder;
 use OEngine\Core\Facades\Core;
@@ -16,6 +15,7 @@ use OEngine\Core\TagCompiler\WidgetTagCompiler;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
 use Livewire\Livewire;
+use OEngine\LaravelPackage\ServicePackage;
 
 class CoreServiceProvider extends ServiceProvider
 {
@@ -41,10 +41,8 @@ class CoreServiceProvider extends ServiceProvider
     {
 
         // First Setup Layout Theme
-        add_action("theme_head_before", function ($isPageTitle = true) {
-            if (!isset($isPageTitle) || $isPageTitle === true) {
-                echo "<title>" . page_title() . "</title>";
-            }
+        add_action("theme_head_before", function () {
+            Theme::getHeaderInfo();
             Theme::getAssets()->loadAsset("asset_head_before");
         }, 0);
         add_action("theme_head_after", function () {

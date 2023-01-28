@@ -402,4 +402,13 @@ class CoreManager
         // $process = new Process(["php artisan module:link"]);
         // $process->start();
     }
+    private $modelOrInfoSeo = null;
+    public function setModelSeo($modelOrInfoSeo)
+    {
+        $this->modelOrInfoSeo = $modelOrInfoSeo;
+    }
+    public function getModelSeo()
+    {
+        return $this->modelOrInfoSeo;
+    }
 }

@@ -47,6 +47,8 @@ use Illuminate\Support\Facades\Facade;
  * @method static string base64Encode(string $text)
  * @method static string base64Decode(string $hash)
  * @method static string jsonDecode(string $hash)
+ * @method static void setModelSeo($modelOrInfoSeo)
+ * @method static mixed getModelSeo()
  * 
  * 
  * @see \OEngine\Core\Facades\Core

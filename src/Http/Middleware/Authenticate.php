@@ -5,6 +5,7 @@ namespace OEngine\Core\Http\Middleware;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 use Closure;
 use OEngine\Core\Facades\Core;
+use Illuminate\Support\Str;
 
 class Authenticate extends Middleware
 {
@@ -13,13 +14,17 @@ class Authenticate extends Middleware
         $response = parent::handle($request, $next, ...$guards);
         // Like: users.index
         $route = $request->route()->getName();
-        if ($route == 'core.table.slug') {
-            $route = 'core.' . $request->route('module');
+        //skip with prexfix '_'
+        if (!Str::startsWith($route, '_')) {
+            if ($route == 'core.table.slug') {
+                $route = 'core.' . $request->route('module');
+            }
+            // Hasn't permission
+            if (!Core::checkPermission($route)) {
+                return abort(403);
+            }
         }
-        // Hasn't permission
-        if (!Core::checkPermission($route)) {
-            return abort(403);
-        }
+
         return $response;
     }
     /**
