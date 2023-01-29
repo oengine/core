@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use OEngine\Core\Loader\TableLoader;
 use OEngine\Core\Support\Core\ActionBase;
+use Illuminate\Support\Str;
 
 class LoadPermission extends ActionBase
 {
@@ -62,7 +63,8 @@ class LoadPermission extends ActionBase
 
         foreach ($routeCollection as $value) {
             $name = $value->getName();
-            if (!$name || !in_array(Illuminate\Auth\Middleware\Authenticate::class, $value->gatherMiddleware())) continue;
+            //skip with prexfix '_'
+            if (!$name || Str::startsWith($name , '_')|| !in_array(Illuminate\Auth\Middleware\Authenticate::class, $value->gatherMiddleware())) continue;
             self::SetPermission($name, $value);
         }
         $table = TableLoader::getData();
