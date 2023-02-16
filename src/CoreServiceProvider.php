@@ -13,7 +13,6 @@ use OEngine\Core\Facades\Plugin;
 use OEngine\Core\TagCompiler\LivewireGTagCompiler;
 use OEngine\Core\TagCompiler\WidgetTagCompiler;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Log;
 use Livewire\Livewire;
 use OEngine\LaravelPackage\ServicePackage;
 

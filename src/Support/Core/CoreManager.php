@@ -57,7 +57,7 @@ class CoreManager
 
     public function loadViewsFrom($path, $namespace = 'core')
     {
-        $this->callAfterResolving('view', function ($view) use ($path, $namespace) {
+        $this->callAfterResolving('view', function ($view,$app) use ($path, $namespace) {
             if (
                 isset($this->app->config['view']['paths']) &&
                 is_array($this->app->config['view']['paths'])
